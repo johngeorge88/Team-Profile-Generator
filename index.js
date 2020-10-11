@@ -70,13 +70,14 @@ const managerPrompt = () => {
                 answers.name,
                 answers.id,
                 answers.email,
-                answers.officeName
+                answers.officeNumber
             );
             officeTeam.push(manager);
             promptChoice();
         });
 };
 
+// Intern Prompt Question
 const internPrompt = () => {
     return inquirer
         .prompt([
@@ -145,6 +146,7 @@ const internPrompt = () => {
         });
 };
 
+// Engineer prompt Questions
 const engineerPrompt = () => {
     return inquirer
         .prompt([
@@ -213,6 +215,7 @@ const engineerPrompt = () => {
         });
 };
 
+// Prompt to add more Employee or finish building the team
 const promptChoice = () => {
     return inquirer
         .prompt([
