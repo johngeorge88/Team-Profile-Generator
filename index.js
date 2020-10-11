@@ -8,7 +8,7 @@ const {writeFile} = require('./util/generate-site');
 
 const officeTeam = [];
 
-// array of questions for user
+// Manager prompt Questions
 const managerPrompt = () => {
     return inquirer
         .prompt([
@@ -16,8 +16,8 @@ const managerPrompt = () => {
                 type: "input",
                 name: "name",
                 message: "What is the team manager's name?",
-                validate: managerName => {
-                    if (managerName) {
+                validate: Input => {
+                    if (Input) {
                         return true;
                     } else {
                         console.log('Please enter a team manager name!');
@@ -29,16 +29,40 @@ const managerPrompt = () => {
                 type: "input",
                 name: "id",
                 message: "What is the team manager's id?",
+                validate: Input => {
+                    if (Input) {
+                        return true;
+                    } else {
+                        console.log('Please enter a team manager ID!');
+                        return false;
+                    }
+                }
             },
             {
                 type: "input",
                 name: "email",
                 message: "What is the team manager's email?",
+                validate: Input => {
+                    if (Input) {
+                        return true;
+                    } else {
+                        console.log('Please enter a team manager email!');
+                        return false;
+                    }
+                }
             },
             {
                 type: "input",
                 name: "officeNumber",
                 message: "What is the team manager's office number?",
+                validate: Input => {
+                    if (Input) {
+                        return true;
+                    } else {
+                        console.log('Please enter a team manager office number!');
+                        return false;
+                    }
+                }
             },
         ])
         .then((answers) => {
@@ -60,21 +84,53 @@ const internPrompt = () => {
                 type: "input",
                 name: "name",
                 message: "What is your intern's name?",
+                validate: Input => {
+                    if (Input) {
+                        return true;
+                    } else {
+                        console.log('Please enter an Intern name!');
+                        return false;
+                    }
+                }
             },
             {
                 type: "input",
                 name: "id",
                 message: "What is your intern's id?",
+                validate: Input => {
+                    if (Input) {
+                        return true;
+                    } else {
+                        console.log('Please enter an Intern ID!');
+                        return false;
+                    }
+                }
             },
             {
                 type: "input",
                 name: "email",
                 message: "What is your intern's email?",
+                validate: Input => {
+                    if (Input) {
+                        return true;
+                    } else {
+                        console.log('Please enter an Intern e-mail!');
+                        return false;
+                    }
+                }
             },
             {
                 type: "input",
                 name: "school",
                 message: "What is your intern's school?",
+                validate: Input => {
+                    if (Input) {
+                        return true;
+                    } else {
+                        console.log('Please enter an Intern school!');
+                        return false;
+                    }
+                }
             },
         ])
         .then((Answers) => {
@@ -96,21 +152,53 @@ const engineerPrompt = () => {
                 type: "input",
                 name: "name",
                 message: "What is your engineer's name?",
+                validate: Input => {
+                    if (Input) {
+                        return true;
+                    } else {
+                        console.log('Please enter Engineer name!');
+                        return false;
+                    }
+                }
             },
             {
                 type: "input",
                 name: "id",
                 message: "What is your engineer's id?",
+                validate: Input => {
+                    if (Input) {
+                        return true;
+                    } else {
+                        console.log('Please enter Engineer ID!');
+                        return false;
+                    }
+                }
             },
             {
                 type: "input",
                 name: "email",
                 message: "What is your engineer's email?",
+                validate: Input => {
+                    if (Input) {
+                        return true;
+                    } else {
+                        console.log('Please enter Engineer e-mail!');
+                        return false;
+                    }
+                }
             },
             {
                 type: "input",
                 name: "github",
-                message: "What is your engineer's GitHub username?",
+                message: "What is your engineer's Github username?",
+                validate: Input => {
+                    if (Input) {
+                        return true;
+                    } else {
+                        console.log('Please enter Engineer Github username!');
+                        return false;
+                    }
+                }
             },
         ])
         .then((Answers) => {
