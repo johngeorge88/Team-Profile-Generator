@@ -3,7 +3,8 @@ const fs = require('fs');
 const Manager = require("./lib/Manager.js");
 const Intern = require("./lib/Intern.js");
 const Engineer = require("./lib/Engineer.js");
-const generateHTML = require('./src/HTMLgenerator.js');
+const generateHTML = require('./src/page-template.js');
+const {writeFile} = require('./util/generate-site');
 
 const officeTeam = [];
 
@@ -47,8 +48,7 @@ const managerPrompt = () => {
                 answers.email,
                 answers.officeName
             );
-            // officeTeam.push(manager);
-            // idArray.push(answers.id);
+            officeTeam.push(manager);
             promptChoice();
         });
 };
@@ -84,7 +84,7 @@ const internPrompt = () => {
                 Answers.email,
                 Answers.school
             );
-            // officeTeam.push(intern);
+            officeTeam.push(intern);
             promptChoice();
         });
 };
@@ -120,7 +120,7 @@ const engineerPrompt = () => {
                 Answers.email,
                 Answers.github
             );
-            // officeTeam.push(engineer);
+            officeTeam.push(engineer);
             promptChoice();
         });
 };
@@ -141,14 +141,12 @@ const promptChoice = () => {
             } else if (choice.team === "Intern") {
                 return internPrompt();
             } else if (choice.team === "Finish building the team") {
-                // return generateSite();
+                return generateHTML(officeTeam);
             }
-        });
+        })
+        .then(pageHTML => {
+            return writeFile(pageHTML);
+        })
 };
-const generateSite = () => {
-    if (!fs.existsSync(outputDir)) {
-        fs.mkdirSync(outputDir);
-    }
-    fs.writeFileSync(outPutPath, generateHTML(officeTeam), "utf-8");
-};
+
 managerPrompt();
